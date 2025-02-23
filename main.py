@@ -12,7 +12,7 @@ screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption('Pong')
 
 
-#define font
+
 font = pygame.font.SysFont('Constantia', 30)
 
 
@@ -26,7 +26,7 @@ winner = 0
 speed_increase = 0
 
 
-#define colours
+
 bg = (50, 25, 50)
 white = (255, 255, 255)
 
@@ -61,7 +61,7 @@ class paddle():
 		pygame.draw.rect(screen, white, self.rect)
 
 	def ai(self):
-		#ai to move the paddle automatically
+		#ai to move 
 		#move down
 		if self.rect.centery < pong.rect.top and self.rect.bottom < screen_height:
 			self.rect.move_ip(0, self.ai_speed)
@@ -78,22 +78,22 @@ class ball():
 
 	def move(self):
 
-		#check collision with top margin
+	
 		if self.rect.top < margin:
 			self.speed_y *= -1
-		#check collision with bottom of the screen
+		
 		if self.rect.bottom > screen_height:
 			self.speed_y *= -1
 		if self.rect.colliderect(player_paddle) or self.rect.colliderect(cpu_paddle):
 			self.speed_x *= -1
 
-		#check for out of bounds
+	
 		if self.rect.left < 0:
 			self.winner = 1
 		if self.rect.left > screen_width:
 			self.winner = -1
 
-		#update ball position
+		
 		self.rect.x += self.speed_x
 		self.rect.y += self.speed_y
 
@@ -114,15 +114,15 @@ class ball():
 		self.winner = 0# 1 is the player and -1 is the CPU
 
 
-#create paddles
+
 player_paddle = paddle(screen_width - 40, screen_height // 2)
 cpu_paddle = paddle(20, screen_height // 2)
 
-#create pong ball
+
 pong = ball(screen_width - 60, screen_height // 2 + 50)
 
 
-#create game loop
+
 run = True
 while run:
 
@@ -134,7 +134,7 @@ while run:
 	draw_text('BALL SPEED: ' + str(abs(pong.speed_x)), font, white, screen_width // 2 - 100 , 15)
 
 
-	#draw paddles
+	
 	player_paddle.draw()
 	cpu_paddle.draw()
 
@@ -155,7 +155,7 @@ while run:
 				cpu_score += 1
 
 
-	#print player instructions
+	
 	if live_ball == False:
 		if winner == 0:
 			draw_text('CLICK ANYWHERE TO START', font, white, 100, screen_height // 2 -100)
